@@ -1,0 +1,26 @@
+{
+  "Button": {
+    "description": "Auto imported from components/Button.vue"
+  },
+  "Certificate": {
+    "description": "Auto imported from components/Certificate.vue"
+  },
+  "Input": {
+    "description": "Auto imported from components/Input.vue"
+  },
+  "LineChart": {
+    "description": "Auto imported from components/LineChart.vue"
+  },
+  "Loader": {
+    "description": "Auto imported from components/Loader.vue"
+  },
+  "MainPage": {
+    "description": "Auto imported from components/MainPage.vue"
+  },
+  "Select": {
+    "description": "Auto imported from components/Select.vue"
+  },
+  "UserInput": {
+    "description": "Auto imported from components/UserInput.vue"
+  }
+}
