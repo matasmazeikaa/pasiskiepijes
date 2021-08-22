@@ -71,13 +71,11 @@ export default {
       try {
         const { data } = await getAllCovidVaccinationData()
 
-        console.log(data.features)
         const sortedDataSet = data.features.sort((a, b) => {
 
           return a.attributes.value - b.attributes.value
         })
 
-        console.log(sortedDataSet)
 
         const dataset = sortedDataSet.map((feature) => feature.attributes.value)
         const labels = sortedDataSet.map((feature) => feature.attributes.EXPR_1)
