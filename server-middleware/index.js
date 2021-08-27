@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: 'xfVsy0pQp0Zj5VmMgqG1st6BxAk'
 })
 
-const YOUR_DOMAIN = 'http://localhost:3000/'
+const YOUR_DOMAIN = 'https://pasiskiepijes.lt';
 
 app.use(bodyParser({limit: '50mb'}) )
 
