@@ -1,11 +1,9 @@
 const stripe = require('stripe')('sk_test_51JRFzZF8cwCrjSdRwY9lmc5KEKR9Htou50nco2UBM6AkSEnYsOW6NjRPhNKycJxQUUHQPfmda8BwdYhsi0eQtY6p00yzOkArh6')
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
-const { PrismaClient } = require('@prisma/client')
 const { nanoid } = require('nanoid')
 
 const app = require('express')()
-const prisma = new PrismaClient()
 
 cloudinary.config({
   cloud_name: 'ddcyo820z',
@@ -25,14 +23,6 @@ app.post('/create-checkout-session', async (req, res) => {
   console.log(uploadedCertificate);
 
   try {
-    await prisma.order.create({
-      data: {
-        nameSurname,
-        vaccine,
-        date
-      }
-    })
-
     const session = await stripe.checkout.sessions.create({
       submit_type: 'pay',
       billing_address_collection: 'auto',
