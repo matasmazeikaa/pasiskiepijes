@@ -15,10 +15,10 @@
 import Vue from 'vue'
 import UserInput from '~/components/UserInput.vue'
 import Certificate from '~/components/Certificate.vue'
-import LineChart from '~/components/LineChart.vue'
+import Chart from '../components/Chart.vue'
 
 export default Vue.extend({
-  components: { LineChart, Certificate, UserInput },
+  components: { Chart, Certificate, UserInput },
   data() {
     return {
       currentStep: 'UserInput',

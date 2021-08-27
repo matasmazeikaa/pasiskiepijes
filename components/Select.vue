@@ -11,19 +11,19 @@ export default {
   },
   props: {
     name: {
-      type: Array,
-      default: ''
+      type: String,
+      default: '',
     },
     options: {
-      type: String,
-      default: ''
+      type: Array,
+      default: () => [],
     },
     placeholder: {
       type: String,
       default: ''
     },
     value: {
-      type: Object,
+      type: [Object, String],
       default: () => ({ label: '', vaccine: '' })
     }
   },
@@ -46,7 +46,7 @@ export default {
     max-width: 37rem;
     border: 0.2rem solid $dark;
     margin: 0 auto;
-    padding: 1.8rem 2.8rem;
+    padding: 1.7rem 2.8rem;
   }
 
   &--open {
@@ -92,6 +92,7 @@ export default {
     font-size: 1.6rem;
     margin: 0;
     padding: 0;
+    border: none;
   }
 
 

@@ -10,7 +10,11 @@
         <h3 class='name'>{{ userData.nameSurname }}</h3>
         <p class='reason'>Pasiskiepijus <strong>"{{ userData.vaccine.label }}"</strong> vakcina {{ userData.date }}</p>
         <div class='graph'>
-          <LineChart :chart-data='datacollection' :options='$options.CHART_OPTIONS' />
+          <Chart
+            v-if='datacollection'
+            :data="datacollection"
+            :tooltip-index='nearestVaccinationDateIndex'
+          />
         </div>
         <p class='year'>2021</p>
       </div>
@@ -25,10 +29,10 @@
 <script>
 import VanillaTilt from 'vanilla-tilt'
 import html2canvas from 'html2canvas'
-import LineChart from '~/components/LineChart'
 import { getAllCovidVaccinationData } from '~/api/getAllCovidVaccinationData'
 import Button from '~/components/Button'
 import { createPaymentSessionApi } from '~/api/createPaymenSessionApi'
+import Chart from '@/components/Chart'
 
 const CHART_OPTIONS = {
   legend: { display: false }, scales: {
@@ -42,7 +46,7 @@ const CHART_OPTIONS = {
 
 export default {
   CHART_OPTIONS,
-  components: { Button, LineChart },
+  components: { Chart, Button },
   props: {
     name: {
       type: String,
@@ -60,7 +64,10 @@ export default {
   data() {
     return {
       datacollection: null,
-      isLoadingOrder: false
+      isLoadingOrder: false,
+      isLoadingCertificate: false,
+      isError: false,
+      nearestVaccinationDateIndex: 0
     }
   },
   mounted() {
@@ -68,6 +75,8 @@ export default {
   },
   methods: {
     async getVaccinationData() {
+      this.isLoadingCertificate = true;
+
       try {
         const { data } = await getAllCovidVaccinationData()
 
@@ -77,9 +86,18 @@ export default {
         })
 
 
-        const dataset = sortedDataSet.map((feature) => feature.attributes.value)
-        const labels = sortedDataSet.map((feature) => feature.attributes.EXPR_1)
-        this.datacollection = this.fillData(dataset, labels)
+
+        this.datacollection = sortedDataSet.map((feature, index) => ({
+          x: feature.attributes.value,
+          y: index,
+          dateJs: new Date(feature.attributes.EXPR_1),
+          date: feature.attributes.EXPR_1,
+        }));
+
+        const jsDates = this.datacollection.map((dataset) => dataset.dateJs)
+
+        this.nearestVaccinationDateIndex = this.getNearestDate(jsDates, new Date(this.userData.date))
+
         this.$nextTick(() => {
           VanillaTilt.init(this.$refs.certificate, {
             glare: true,
@@ -87,21 +105,34 @@ export default {
           })
         })
       } catch (error) {
-        console.error(error.response)
+        this.isError = true;
+      } finally {
+        this.isLoadingCertificate = true;
       }
     },
-    fillData(data, labels) {
+    fillData(series, labels) {
       return {
         labels,
-        datasets: [{
-          backgroundColor: 'transparent',
-          borderColor: 'rgb(255, 99, 132)',
-          data
-        }],
-        options: {
-          showAllTooltips: true
-        }
+        series: [series]
       }
+    },
+    getNearestDate (dates, target) {
+      if (!target) target = Date.now()
+      else if (target instanceof Date) target = target.getTime()
+
+      let nearest = Infinity
+      let winner = -1
+
+      dates.forEach(function (date, index) {
+        if (date instanceof Date) date = date.getTime()
+        const distance = Math.abs(date - target)
+        if (distance < nearest) {
+          nearest = distance
+          winner = index
+        }
+      })
+
+      return winner
     },
     async handleOrderButtonClick() {
       this.isLoadingOrder = true
@@ -190,7 +221,7 @@ export default {
 
 .certificate .graph {
   & > div {
-    width: 120px;
+    width: 90px;
     height: 50px !important;
   }
 
@@ -201,7 +232,7 @@ export default {
 
 .certificate .year {
   font-size: 6px;
-  margin: 5px 0;
+  margin-top: auto;
 }
 
 .order-text {
@@ -250,20 +281,16 @@ export default {
     margin-bottom: -20px;
   }
   .certificate .graph {
-    margin: 20px 20px 0;
 
     & > div {
-      width: 250px;
-      height: 100px !important;
-    }
-
-    canvas {
-      height: 100px !important;
+      width: 160px;
+      margin-top: 40px;
+      height: 70px !important;
     }
   }
   .certificate .year {
     font-size: 12px;
-    margin: 10px 0;
+    margin-top: auto;
   }
 }
 </style>

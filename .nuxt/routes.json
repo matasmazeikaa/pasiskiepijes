@@ -3,7 +3,6 @@
     "name": "index",
     "path": "/",
     "component": "/home/matas/personal-projects/pasiskiepijes/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_0bc8e218"
+    "chunkName": "pages/index"
   }
 ]

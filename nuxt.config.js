@@ -23,7 +23,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/ga.client.js'
+    '@/plugins/ga.client.js',
+    '@/plugins/chartist'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

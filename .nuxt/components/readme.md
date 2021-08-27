@@ -8,8 +8,8 @@ You can directly use them in pages and other components without the need to impo
 
 - `<Button>` | `<button>` (components/Button.vue)
 - `<Certificate>` | `<certificate>` (components/Certificate.vue)
+- `<Chart>` | `<chart>` (components/Chart.vue)
 - `<Input>` | `<input>` (components/Input.vue)
-- `<LineChart>` | `<line-chart>` (components/LineChart.vue)
 - `<Loader>` | `<loader>` (components/Loader.vue)
 - `<MainPage>` | `<main-page>` (components/MainPage.vue)
 - `<Select>` | `<select>` (components/Select.vue)

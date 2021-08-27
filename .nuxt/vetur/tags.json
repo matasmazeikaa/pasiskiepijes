@@ -5,11 +5,11 @@
   "Certificate": {
     "description": "Auto imported from components/Certificate.vue"
   },
+  "Chart": {
+    "description": "Auto imported from components/Chart.vue"
+  },
   "Input": {
     "description": "Auto imported from components/Input.vue"
-  },
-  "LineChart": {
-    "description": "Auto imported from components/LineChart.vue"
   },
   "Loader": {
     "description": "Auto imported from components/Loader.vue"

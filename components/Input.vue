@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     handleInput(e) {
-      console.log(e.target.value)
       this.$emit('input', e.target.value)
     }
   }

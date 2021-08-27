@@ -1,7 +1,7 @@
 export { default as Button } from '../../components/Button.vue'
 export { default as Certificate } from '../../components/Certificate.vue'
+export { default as Chart } from '../../components/Chart.vue'
 export { default as Input } from '../../components/Input.vue'
-export { default as LineChart } from '../../components/LineChart.vue'
 export { default as Loader } from '../../components/Loader.vue'
 export { default as MainPage } from '../../components/MainPage.vue'
 export { default as Select } from '../../components/Select.vue'
