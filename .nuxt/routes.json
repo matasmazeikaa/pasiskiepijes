@@ -4,15 +4,13 @@
     "path": "/payment-success",
     "component": "/home/matas/personal-projects/pasiskiepijes/pages/payment-success.vue",
     "chunkName": "pages/payment-success",
-    "url": "/payment-success",
-    "_name": "_51e3bbfc"
+    "url": "/payment-success"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/home/matas/personal-projects/pasiskiepijes/pages/index.vue",
     "chunkName": "pages/index",
-    "url": "/",
-    "_name": "_0bc8e218"
+    "url": "/"
   }
 ]

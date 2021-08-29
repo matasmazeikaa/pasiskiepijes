@@ -5,6 +5,8 @@
     <img src="~/static/vaccine.svg" class="main__vaccine-icon-3" alt="" />
 
     <Nuxt />
+
+    <a href="mailto:info@pasiskiepijes.lt" class="main__email-link">info@pasiskiepijes.lt</a>
   </main>
 </template>
 
@@ -19,6 +21,7 @@
   justify-content: center;
   text-align: center;
   position: relative;
+    padding: 4rem 6.5% 8rem 6.5%;
 
   &__vaccine-icon-1 {
     width: 256px;
@@ -41,6 +44,22 @@
     height: 256px;
     position: fixed;
     right: -2rem;
+  }
+
+  &__email-link {
+    padding: 8px;
+    position: fixed;
+    bottom: 0;
+    background-color: grey;
+    left: 0;
+    right: 0;
+    max-width: 200px;
+    margin: 0 auto;
+    color: white;
+    font-size: 16px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    z-index: 10;
   }
 
   @media only screen and (max-width: 766px) {

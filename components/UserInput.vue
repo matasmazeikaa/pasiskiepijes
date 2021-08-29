@@ -108,8 +108,6 @@ export default Vue.extend({
   }
 
   @media only screen and (max-width: 766px) {
-    padding: 4rem 6.5%;
-
     &__title {
       font-size: 4.4rem;
     }
