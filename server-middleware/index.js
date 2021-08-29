@@ -14,7 +14,7 @@ cloudinary.config({
 app.use(bodyParser({limit: '50mb'}) )
 
 app.post('/create-checkout-session', async (req, res) => {
-  const { nameSurname, vaccine, date, image } = req.body
+  const { nameSurname, image } = req.body
 
   const uploadedCertificate = await cloudinary.v2.uploader.upload(image, { public_id: `${nameSurname}_certificate_${nanoid()}` }, (error, result) => result)
 
