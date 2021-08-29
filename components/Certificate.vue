@@ -5,7 +5,7 @@
         <div class='logo'>
           <img src='~/static/vaccine.svg' alt='' />
         </div>
-        <p class='author'>LIETUVOS RESBUPLIKOS ANTI-COVID ASIOCIAJA</p>
+        <p class='author'>LIETUVOS RESBUPLIKOS PASISKIEPIJUSIŲ ASOCIACIJA</p>
         <h2 class='title'>DIPLOMAS</h2>
         <h3 class='name'>{{ userData.nameSurname }}</h3>
         <p class='reason'>Pasiskiepijus <strong>"{{ userData.vaccine.label }}"</strong> vakcina {{ userData.date }}</p>
