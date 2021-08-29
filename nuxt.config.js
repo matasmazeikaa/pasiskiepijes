@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'Pasiskiepijes - COVID skiepo įąmžinimas diplome',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
@@ -13,32 +13,25 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Įamžink šios nepaprastos istorinės akimirkos datą su savo asmeniniu SKIEPO DIPLOMU.'
-      }
-
+        content:
+          'Įamžink šios nepaprastos istorinės akimirkos datą su savo asmeniniu SKIEPO DIPLOMU.',
+      },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   env: {
-    'API_URL': process.env.API_URL,
-    'DOMAIN_URL': process.env.DOMAIN_URL,
-    'STRIPE_API_KEY': process.env.STRIPE_API_KEY,
-    'GTAG_KEY': process.env.GTAG_KEY
+    API_URL: process.env.API_URL,
+    DOMAIN_URL: process.env.DOMAIN_URL,
+    STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+    GTAG_KEY: process.env.GTAG_KEY,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/scss/global.scss'
-  ],
+  css: ['@/assets/scss/global.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '@/plugins/ga.client.js',
-    '@/plugins/chartist'
-  ],
+  plugins: ['@/plugins/ga.client.js', '@/plugins/chartist'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -49,7 +42,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/google-analytics'
+    '@nuxtjs/google-analytics',
   ],
 
   googleFonts: {
@@ -58,33 +51,34 @@ export default {
     preconnect: true,
     preload: true,
     families: {
-        'Roboto+Condensed': [700],
-        Poppins: [400, 700]
-    }
+      'Roboto+Condensed': [700],
+      Poppins: [400, 700],
+    },
   },
 
   googleAnalytics: {
-    id: 'G-YVG3DY4YKJ'
+    id: 'G-YVG3DY4YKJ',
   },
 
-  serverMiddleware: [
-    { path: "/api", handler: "~/server-middleware/index.js" },
-  ],
+  serverMiddleware: [{ path: '/api', handler: '~/server-middleware/index.js' }],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/style-resources',
-  ],
+  modules: ['@nuxtjs/style-resources', '@nuxtjs/sitemap'],
 
   styleResources: {
     scss: ['@/assets/scss/partials.scss'],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
+  build: {},
+
+  sitemap: {
+    hostname: process.env.DOMAIN_URL,
+    gzip: true,
+    exclude: ['/payment-success'],
   },
 
   server: {
-    host: '0.0.0.0'
-  }
+    host: '0.0.0.0',
+  },
 }

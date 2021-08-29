@@ -17,6 +17,7 @@
     "*.{css,vue}": "stylelint"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^2.4.0",
     "@prisma/client": "^2.29.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
