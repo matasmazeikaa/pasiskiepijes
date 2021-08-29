@@ -200,7 +200,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
-      env: {}
+      env: {"API_URL":"http://localhost:3000/api","DOMAIN_URL":"http://localhost:3000/","STRIPE_API_KEY":"sk_test_51JRFzZF8cwCrjSdRwY9lmc5KEKR9Htou50nco2UBM6AkSEnYsOW6NjRPhNKycJxQUUHQPfmda8BwdYhsi0eQtY6p00yzOkArh6","GTAG_KEY":"G-6PYSD7GN9Z"}
     }
     // Only set once
 

@@ -1,50 +1,66 @@
 <template>
-  <div class='input-container' :class='{inputVisible: value}'>
-    <input class='input-container__input' :name='name' :type='type' :value='value' @input='handleInput'/>
-    <span class='input-container__placeholder'>{{ placeholder }}</span>
+  <div class="input-container" :class="{ inputVisible: value }">
+    <input
+      class="input-container__input"
+      :name="name"
+      :type="type"
+      :value="value"
+      :max="maxDate"
+      :min="$options.MIN_DATE"
+      :maxlength="32"
+      @input="handleInput"
+    />
+    <span class="input-container__placeholder">{{ placeholder }}</span>
   </div>
 </template>
 
 <script>
+import {getTodayDate} from '~/utils/getTodayDate';
+
+const MIN_DATE = '2021-02-01'
+
 export default {
+  MIN_DATE,
   props: {
     name: {
       type: String,
-      default: ''
+      default: '',
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     value: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
-      dataValue: ''
+      dataValue: '',
+      maxDate: getTodayDate(),
+
     }
   },
   methods: {
     handleInput(e) {
       this.$emit('input', e.target.value)
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 /* stylelint-disable no-descending-specificity */
 .inputVisible .input-container__placeholder {
-    top: -1.2rem;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 0 1.5rem;
+  top: -1.2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 1.5rem;
 }
 
 .input-container {
@@ -63,6 +79,7 @@ export default {
     font-family: $secondary-font;
     display: inline-block;
     width: 100%;
+    height: 70px;
 
     &:focus {
       & ~ #{$this}__placeholder {
@@ -82,11 +99,11 @@ export default {
     font-size: 1.6rem;
     color: $white;
     left: 2.8rem;
-    top: 1.8rem;
+    top: 2.35rem;
     background-color: $primary;
   }
 
-  input[type="date"]::-webkit-calendar-picker-indicator {
+  input[type='date']::-webkit-calendar-picker-indicator {
     background: transparent;
     bottom: 0;
     color: transparent;
@@ -99,13 +116,26 @@ export default {
     width: auto;
   }
 
-  input[type="date"]::after {
+  input[type='date']::after {
     content: '';
     background: url(~/static/calendar-icon.svg) center center no-repeat;
     position: absolute;
     right: 8px;
     width: 24px;
     height: 24px;
+  }
+
+  input::-webkit-datetime-edit-text {
+    color: $white;
+  }
+  input::-webkit-datetime-edit-month-field {
+    color: $white;
+  }
+  input::-webkit-datetime-edit-day-field {
+    color: $white;
+  }
+  input::-webkit-datetime-edit-year-field {
+    color: $white;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'pasiskiepijes',
+    title: 'Pasiskiepijes - COVID skiepo įąmžinimas diplome',
     htmlAttrs: {
       lang: 'en'
     },
@@ -9,11 +9,24 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Įamžink šios nepaprastos istorinės akimirkos datą su savo asmeniniu SKIEPO DIPLOMU.'
+      }
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  env: {
+    'API_URL': process.env.API_URL,
+    'DOMAIN_URL': process.env.DOMAIN_URL,
+    'STRIPE_API_KEY': process.env.STRIPE_API_KEY,
+    'GTAG_KEY': process.env.GTAG_KEY
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -70,4 +83,8 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
+
+  server: {
+    host: '0.0.0.0'
+  }
 }

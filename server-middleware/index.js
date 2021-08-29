@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51JRFzZF8cwCrjSdRwY9lmc5KEKR9Htou50nco2UBM6AkSEnYsOW6NjRPhNKycJxQUUHQPfmda8BwdYhsi0eQtY6p00yzOkArh6')
+const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 const bodyParser = require('body-parser')
 const cloudinary = require('cloudinary')
 const { nanoid } = require('nanoid')
@@ -11,16 +11,12 @@ cloudinary.config({
   api_secret: 'xfVsy0pQp0Zj5VmMgqG1st6BxAk'
 })
 
-const YOUR_DOMAIN = 'https://pasiskiepijes.lt';
-
 app.use(bodyParser({limit: '50mb'}) )
 
 app.post('/create-checkout-session', async (req, res) => {
   const { nameSurname, vaccine, date, image } = req.body
 
   const uploadedCertificate = await cloudinary.v2.uploader.upload(image, { public_id: `${nameSurname}_certificate_${nanoid()}` }, (error, result) => result)
-
-  console.log(uploadedCertificate);
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -46,13 +42,12 @@ app.post('/create-checkout-session', async (req, res) => {
         'card'
       ],
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}/success.html`,
-      cancel_url: `${YOUR_DOMAIN}/cancel.html`
+      success_url: `${process.env.DOMAIN_URL}/payment-success`,
+      cancel_url: `${process.env.DOMAIN_URL}`
     })
 
     res.json({ redirectUrl: session.url })
   } catch (error) {
-    console.log(error);
     res.status(500).json({ code: 'something_went_wrong' })
   }
 

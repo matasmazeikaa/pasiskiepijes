@@ -1,5 +1,12 @@
 [
   {
+    "name": "payment-success",
+    "path": "/payment-success",
+    "component": "/home/matas/personal-projects/pasiskiepijes/pages/payment-success.vue",
+    "chunkName": "pages/payment-success",
+    "_name": "_51e3bbfc"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/home/matas/personal-projects/pasiskiepijes/pages/index.vue",

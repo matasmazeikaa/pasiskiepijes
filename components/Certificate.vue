@@ -90,13 +90,15 @@ export default {
         this.datacollection = sortedDataSet.map((feature, index) => ({
           x: feature.attributes.value,
           y: index,
-          dateJs: new Date(feature.attributes.EXPR_1),
+          dateJs: new Date(feature.attributes.EXPR_1.replace(/-/g, '/')),
           date: feature.attributes.EXPR_1,
         }));
 
         const jsDates = this.datacollection.map((dataset) => dataset.dateJs)
 
         this.nearestVaccinationDateIndex = this.getNearestDate(jsDates, new Date(this.userData.date))
+
+        this.$gtag.event('generate_certificate');
 
         this.$nextTick(() => {
           VanillaTilt.init(this.$refs.certificate, {

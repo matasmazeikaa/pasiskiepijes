@@ -15,6 +15,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 import nuxt_plugin_plugin_67d1ab70 from 'nuxt_plugin_plugin_67d1ab70' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_googleanalytics_53f8ac40 from 'nuxt_plugin_googleanalytics_53f8ac40' // Source: ./google-analytics.js (mode: 'client')
 import nuxt_plugin_gaclient_7645a3a8 from 'nuxt_plugin_gaclient_7645a3a8' // Source: ../plugins/ga.client.js (mode: 'client')
+import nuxt_plugin_chartist_a53c6440 from 'nuxt_plugin_chartist_a53c6440' // Source: ../plugins/chartist (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -64,7 +65,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"pasiskiepijes","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"hid":"gf-prefetch","rel":"dns-prefetch","href":"https:\u002F\u002Ffonts.gstatic.com\u002F"},{"hid":"gf-preconnect","rel":"preconnect","href":"https:\u002F\u002Ffonts.gstatic.com\u002F","crossorigin":""},{"hid":"gf-preload","rel":"preload","as":"style","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap"}],"style":[],"script":[{"hid":"gf-script","innerHTML":"(function(){var l=document.createElement('link');l.rel=\"stylesheet\";l.href=\"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap\";document.querySelector(\"head\").appendChild(l);})();"}],"noscript":[{"hid":"gf-noscript","innerHTML":"\u003Clink rel=\"stylesheet\" href=\"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap\"\u003E"}],"__dangerouslyDisableSanitizersByTagID":{"gf-script":["innerHTML"],"gf-noscript":["innerHTML"]}},
+    head: {"title":"Pasiskiepijes - COVID skiepo įąmžinimas diplome","htmlAttrs":{"lang":"en"},"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"},{"hid":"description","name":"description","content":"my website description"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"hid":"gf-prefetch","rel":"dns-prefetch","href":"https:\u002F\u002Ffonts.gstatic.com\u002F"},{"hid":"gf-preconnect","rel":"preconnect","href":"https:\u002F\u002Ffonts.gstatic.com\u002F","crossorigin":""},{"hid":"gf-preload","rel":"preload","as":"style","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap"}],"style":[],"script":[{"hid":"gf-script","innerHTML":"(function(){var l=document.createElement('link');l.rel=\"stylesheet\";l.href=\"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap\";document.querySelector(\"head\").appendChild(l);})();"}],"noscript":[{"hid":"gf-noscript","innerHTML":"\u003Clink rel=\"stylesheet\" href=\"https:\u002F\u002Ffonts.googleapis.com\u002Fcss2?family=Roboto+Condensed:wght@700&family=Poppins:wght@400;700&display=swap\"\u003E"}],"__dangerouslyDisableSanitizersByTagID":{"gf-script":["innerHTML"],"gf-noscript":["innerHTML"]}},
 
     router,
     nuxt: {
@@ -188,6 +189,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_gaclient_7645a3a8 === 'function') {
     await nuxt_plugin_gaclient_7645a3a8(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_chartist_a53c6440 === 'function') {
+    await nuxt_plugin_chartist_a53c6440(app.context, inject)
   }
 
   // Lock enablePreview in context

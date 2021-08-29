@@ -1,5 +1,10 @@
 <template>
-  <VueSelect :options='options' :value='value.label' :class='{inputVisible: value.label}' @input='handleInput' />
+  <VueSelect
+    :options="options"
+    :value="value.label"
+    :class="{ inputVisible: value.label }"
+    @input="handleInput"
+  />
 </template>
 
 <script>
@@ -7,7 +12,7 @@ import VueSelect from 'vue-select'
 
 export default {
   components: {
-    VueSelect
+    VueSelect,
   },
   props: {
     name: {
@@ -20,26 +25,25 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ''
+      default: '',
     },
     value: {
       type: [Object, String],
-      default: () => ({ label: '', vaccine: '' })
-    }
+      default: () => ({ label: '', vaccine: '' }),
+    },
   },
   methods: {
     handleInput(e) {
       const value = e !== null ? e : { label: '', vaccine: '' }
 
       this.$emit('input', value)
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang='scss'>
-@import "vue-select/src/scss/vue-select.scss";
-
+<style lang="scss">
+@import 'vue-select/src/scss/vue-select.scss';
 
 .vs {
   &__dropdown-toggle {
@@ -47,6 +51,7 @@ export default {
     border: 0.2rem solid $dark;
     margin: 0 auto;
     padding: 1.7rem 2.8rem;
+    height: 70px;
   }
 
   &--open {
@@ -76,6 +81,7 @@ export default {
       color: $white;
       font-size: 1.6rem;
       transition: 0.2s ease all;
+      top: 0.5rem;
     }
   }
 
@@ -87,7 +93,8 @@ export default {
     fill: $dark;
   }
 
-  &__search, &__search:focus {
+  &__search,
+  &__search:focus {
     color: $white;
     font-size: 1.6rem;
     margin: 0;
@@ -95,8 +102,7 @@ export default {
     border: none;
   }
 
-
-  &__dropdown-toggle[aria-expanded="true"] {
+  &__dropdown-toggle[aria-expanded='true'] {
     .vs__selected-options::before {
       transform: translateY(-3rem);
       font-weight: bold;
@@ -125,15 +131,13 @@ export default {
   }
 }
 
-
 #vs1__listbox {
   max-width: 37rem;
   margin: 0 auto;
 }
 </style>
 
-<style lang='scss'>
-
+<style lang="scss">
 .select {
   position: relative;
 
@@ -145,6 +149,4 @@ export default {
     font-size: 1.6rem;
   }
 }
-
-
 </style>
